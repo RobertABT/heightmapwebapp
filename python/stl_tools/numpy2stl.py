@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0100)https://raw.githubusercontent.com/RobertABT/heightmap/master/webserver/python/stl_tools/numpy2stl.py -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">import struct
+import struct
 import numpy as np
 from itertools import product
 try:
@@ -82,7 +80,7 @@ def numpy2stl(A, fn, scale=0.1, mask_val=None, ascii=False,
 
      mask_val (float) - any element of the inputted array that is less
                         than this value will not be included in the mesh.
-                        default renders all vertices (x &gt; -inf for all float x)
+                        default renders all vertices (x > -inf for all float x)
 
      ascii (bool)  -  sets the STL format to ascii or binary (default)
 
@@ -102,7 +100,7 @@ def numpy2stl(A, fn, scale=0.1, mask_val=None, ascii=False,
     """
 
     m, n = A.shape
-    if n &gt;= m:
+    if n >= m:
         # rotate to best fit a printing platform
         A = np.rot90(A, k=3)
         m, n = n, m
@@ -135,8 +133,8 @@ def numpy2stl(A, fn, scale=0.1, mask_val=None, ascii=False,
 
             n1, n2 = np.zeros(3), np.zeros(3)
 
-            if (this_pt[-1] &gt; mask_val and top_right[-1] &gt; mask_val and
-                    bottom_left[-1] &gt; mask_val):
+            if (this_pt[-1] > mask_val and top_right[-1] > mask_val and
+                    bottom_left[-1] > mask_val):
 
                 facet = np.concatenate([n1, top_right, this_pt, bottom_right])
                 mask[i, k] = 1
@@ -144,8 +142,8 @@ def numpy2stl(A, fn, scale=0.1, mask_val=None, ascii=False,
                 mask[i + 1, k] = 1
                 facets.append(facet)
 
-            if (this_pt[-1] &gt; mask_val and bottom_right[-1] &gt; mask_val and
-                    bottom_left[-1] &gt; mask_val):
+            if (this_pt[-1] > mask_val and bottom_right[-1] > mask_val and
+                    bottom_left[-1] > mask_val):
 
                 facet = np.concatenate(
                     [n2, bottom_right, this_pt, bottom_left])
@@ -189,16 +187,15 @@ def numpy2stl(A, fn, scale=0.1, mask_val=None, ascii=False,
             facets = np.concatenate([facets, bottom])
 
     xsize = facets[:, 3::3].ptp()
-    if xsize &gt; max_width:
+    if xsize > max_width:
         facets = facets * float(max_width) / xsize
 
     ysize = facets[:, 4::3].ptp()
-    if ysize &gt; max_depth:
+    if ysize > max_depth:
         facets = facets * float(max_depth) / ysize
 
     zsize = facets[:, 5::3].ptp()
-    if zsize &gt; max_height:
+    if zsize > max_height:
         facets = facets * float(max_height) / zsize
 
     writeSTL(facets, fn, ascii=ascii)
-</pre></body></html>

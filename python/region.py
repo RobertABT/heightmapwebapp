@@ -1,11 +1,9 @@
-
-<!-- saved from url=(0087)https://raw.githubusercontent.com/RobertABT/heightmap/master/webserver/python/region.py -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">from numpy import *
+from numpy import *
 class Region:
-    xllc = 0  #&lt;--x
-    yllc = 0  #&lt;--y
-    nrows = 3  #&lt;-- b
-    ncols = 3  #&lt;-- a
+    xllc = 0  #<--x
+    yllc = 0  #<--y
+    nrows = 3  #<-- b
+    ncols = 3  #<-- a
     step = 50
     grid = [[1,2,3], [4,5,6], [3,8,9] ]
 
@@ -39,7 +37,7 @@ class Region:
     def readgr(self, gridsqr):
         gridsqr = gridsqr.replace(" ","")
         thepath = "data/" + gridsqr[0:3].upper()
-        if len(gridsqr) &gt; 12:
+        if len(gridsqr) > 12:
             thepath = None
         
         elif len(gridsqr) == 12:
@@ -95,4 +93,3 @@ if __name__ == "__main__":
 
     print("------------")
 
-</pre></body></html>

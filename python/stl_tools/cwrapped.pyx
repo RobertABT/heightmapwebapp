@@ -1,11 +1,9 @@
-
-<!-- saved from url=(0100)https://raw.githubusercontent.com/RobertABT/heightmap/master/webserver/python/stl_tools/cwrapped.pyx -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><pre style="word-wrap: break-word; white-space: pre-wrap;">cimport cython
+cimport cython
 import numpy as np
 cimport numpy as np
 from itertools import product
 
-try:  # python2 &amp; python3 compatibility
+try:  # python2 & python3 compatibility
     xrange
 except NameError:
     xrange = range
@@ -37,7 +35,7 @@ def tessellate(double[:, ::1] A,
 
     for i in xrange(m - 1):
         for k in xrange(n - 1):
-            if A[i, k] &gt; mask_val and A[i, k + 1] &gt; mask_val and A[i + 1, k ] &gt; mask_val:
+            if A[i, k] > mask_val and A[i, k + 1] > mask_val and A[i + 1, k ] > mask_val:
                 facets[idx, 3] = i
                 facets[idx, 4] = k + 1
                 facets[idx, 5] = A[i, k + 1]
@@ -56,7 +54,7 @@ def tessellate(double[:, ::1] A,
 
                 idx += 1
 
-            if A[i + 1, k + 1] &gt; mask_val and A[i, k] &gt; mask_val and A[i + 1, k] &gt; mask_val:
+            if A[i + 1, k + 1] > mask_val and A[i, k] > mask_val and A[i + 1, k] > mask_val:
                 facets[idx, 3] = i
                 facets[idx, 4] = k
                 facets[idx, 5] = A[i, k]
@@ -83,7 +81,7 @@ def tessellate(double[:, ::1] A,
         facet_cut = 2
         for i in xrange(m):
             for k in xrange(n):
-                if edge_mask[i,k] &gt; 8.:
+                if edge_mask[i,k] > 8.:
                     edge_mask[i,k] = 0.
                 elif edge_mask[i,k] != 0.:
                     edge_mask[i,k] = 1.
@@ -91,32 +89,32 @@ def tessellate(double[:, ::1] A,
         edge_mask[:, 0::n - 1] = 1.
 
         for i in xrange(idx):
-            if facets[i, 5] &lt; zmin:
+            if facets[i, 5] < zmin:
                 zmin = facets[i, 5]
-            elif facets[i, 5] &gt; zmax:
+            elif facets[i, 5] > zmax:
                 zmax = facets[i, 5]
 
-            if facets[i, 8] &lt; zmin:
+            if facets[i, 8] < zmin:
                 zmin = facets[i, 8]
-            elif facets[i, 8] &gt; zmax:
+            elif facets[i, 8] > zmax:
                 zmax = facets[i, 8]
 
-            if facets[i, 11] &lt; zmin:
+            if facets[i, 11] < zmin:
                 zmin = facets[i, 11]
-            elif facets[i, 11] &gt; zmax:
+            elif facets[i, 11] > zmax:
                 zmax = facets[i, 11]
 
         zthickness = zmax - zmin
         minval = zmin - min_thickness_percent * zthickness
 
         for i in xrange(idx):
-            if edge_mask[ &lt;int&gt; facets[i, 3], &lt;int&gt; facets[i, 4]] != 0:
+            if edge_mask[ <int> facets[i, 3], <int> facets[i, 4]] != 0:
                 facets[i, 5] = minval
 
-            if edge_mask[ &lt;int&gt; facets[i, 6], &lt;int&gt; facets[i, 7]] != 0:
+            if edge_mask[ <int> facets[i, 6], <int> facets[i, 7]] != 0:
                 facets[i, 8] = minval
 
-            if edge_mask[ &lt;int&gt; facets[i, 9], &lt;int&gt; facets[i, 10]] != 0:
+            if edge_mask[ <int> facets[i, 9], <int> facets[i, 10]] != 0:
                 facets[i, 11] = minval
 
             facets[idx+i, 3] = facets[i, 6]
@@ -137,4 +135,3 @@ def tessellate(double[:, ::1] A,
 @cython.boundscheck(False)
 cdef double[:, ::1] roll2d(double[:, ::1] image, shifts):
     return np.roll(np.roll(image, shifts[0], axis=0), shifts[1], axis=1)
-</pre></body></html>
