@@ -37,23 +37,27 @@ io.sockets.on('connection', function (socket) {
       var body = '';
 
       res.on('data', function(chunk) {
-	  body += chunk;
-      });
+	body += chunk;
+      })
 
       res.on('end', function() {
 	parseString(body, function (err, result) {
-	  gridCode = result.convert.output[0].gr10[0].$.gr10;
-	  gridCode = gridCode.replace(/ /g,'');
-	  fs.exists('public/generated/GENERATED_' + gridCode + '.stl', function(exists) {
-	    if (!exists) {
-	      child = exec('cd python; python2 webstlwrite.py ' + gridCode, function(error, stdout, stderr) {
-	        socket.emit('generated',{'fileName' : gridCode});
-                return;
-	      });
-	    } else {
-	      socket.emit('generated',{'fileName' : gridCode});
-            }
-	  });
+	  if(result.convert.output[0].en[0].$.failed != "failed"){
+	    gridCode = result.convert.output[0].gr10[0].$.gr10;
+	    gridCode = gridCode.replace(/ /g,'');
+	    fs.exists('public/generated/GENERATED_' + gridCode + '.stl', function(exists) {
+	      if (!exists) {
+		child = exec('cd python; python2 webstlwrite.py ' + gridCode, function(error, stdout, stderr) {
+		  socket.emit('generated',{'fileName' : gridCode});
+		  return;
+		});
+	      } else {
+		socket.emit('generated',{'fileName' : gridCode});
+	      }
+	    });
+	  } else {
+	    socket.emit('invalid',{'invalid': true});
+	  }
 	});
       });
     }).on('error', function(e) {

@@ -5,6 +5,9 @@
     <script>
       var socket = io.connect('/');
 
+      socket.on('invalid', function(data){
+	  alert("Invalid postcode!");
+      });
 
       socket.on('generated', function(data){
         window.location.href="/preview?id=GENERATED_" + data.fileName 
@@ -23,7 +26,7 @@
         } else {
           alert('Invalid postcode');
         }
-        socket.emit('postCode', {'code':document.getElementById('postcode').value});
+        //socket.emit('postCode', {'code':document.getElementById('postcode').value});
       }
     </script>
   </head>
