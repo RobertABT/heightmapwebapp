@@ -4,10 +4,25 @@
         <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('/');
+
+
       socket.on('generated', function(data){
         window.location.href="/preview?id=GENERATED_" + data.fileName 
       });
+
+      function valid_postcode(postcode) {
+	postcode = postcode.replace(/\s/g, "");
+	var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i;
+	return regex.test(postcode);
+      }
+
       function submitPostCode() {
+	var input = document.getElementById('postcode').value;                     
+	if(valid_postcode(input)) {
+	  socket.emit('postCode', {'code':input});
+        } else {
+          alert('Invalid postcode');
+        }
         socket.emit('postCode', {'code':document.getElementById('postcode').value});
       }
     </script>
