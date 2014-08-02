@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>HeightMap2STL</title>
+    <title>OS2STL</title>
         <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('/');
@@ -11,14 +11,19 @@
         socket.emit('postCode', {'code':document.getElementById('postcode').value});
       }
     </script>
+    <link href="index.css" rel="stylesheet" type="text/css" media="screen" />
   </head>
+  <div id=container>
   <body>
-    <form id="form1" onSubmit="return false"> 
-      <p> OS2STL is a program which takes a location and then reads the OS map data of that area, converting it into a format that can be printed in a 3d printer. </p>
-       <p>Enter the postcode:       <input type="text" id="postcode"/></p>
+    <form id="form1" onSubmit="return false">
+       <h1>Welcome to OS2STL!</h1>
+       <h5> OS2STL is a program which takes a location and then reads the OS map data of that area,</h5>
+       <h5>converting it into a format that can be printed in a 3d printer.  (".stl" format)</h5>
+       <p>Enter the postcode:       <input type="text" id="postcode"/>  <input type="submit" onClick="submitPostCode()" value="Submit"/></p>
        <!--<p><em>or</em> Enter an OS grid reference <input type="text" name="OSgridref"/></p>
        <p>Provide a vertical scale value (5 is good): <input type="text" name="scale" value="5" size="5" /></p>-->
-       <p><input type="submit" onClick="submitPostCode()" value="Submit"/></p>
+       <p></p>
      </form>
   </body>
+  </div>
 </html>
