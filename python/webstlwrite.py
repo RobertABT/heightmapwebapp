@@ -9,10 +9,12 @@ from stl_tools import numpy2stl
 # usrselectedcoords = raw_input("Please enter desired Ordnance Survey map reference to be used: ")
 print "Running " + sys.argv[1]
 usrselectedcoords = sys.argv[1]
+print "Running " + sys.argv[2]
+usrselectedheight = sys.argv[2]
 
 r = region.Region()
 r.readgr (usrselectedcoords)
 
-filename = str('../public/generated/GENERATED_' + usrselectedcoords + '.stl')
-numpy2stl(r.grid,filename, solid=True)
+filename = str('../public/generated/GENERATED_' + usrselectedcoords + '_scale_' + usrselectedheight + '.stl')
+numpy2stl((r.grid / int(usrselectedheight)),filename, solid=True)
 
