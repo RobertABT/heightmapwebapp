@@ -86,6 +86,8 @@ app.get('/download', function(req, res) {
 
       var filestream = fs.createReadStream(file);
       filestream.pipe(res);
+    } else {
+      res.redirect('/');
     }
   })
 });
