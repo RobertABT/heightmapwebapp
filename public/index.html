@@ -24,6 +24,7 @@
 	var scale = document.getElementById('scale').value;
 	if(valid_postcode(input)) {
 	  socket.emit('postCode', {'code':input, 'scale':scale});
+	  alert("It will take 20 seconds to generate");
 	} else {
 	  alert('Invalid postcode');
 	}
