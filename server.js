@@ -19,8 +19,7 @@ app.configure(function () {
   app.use(app.router);
 });
 
-app.post('/submit', function(req, res){
-}); io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
   console.log(socket.id + " connected.");
 
 
