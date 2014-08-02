@@ -11,8 +11,8 @@ print 'Format required is as HP40 not hp40'
 print "Running " + sys.argv[1]
 usrselectedcoords = sys.argv[1]
 #usrselectedheight = raw_input('Choose scale to divide height by (5 is a good start point)')
-print "Running " + sys.argv[1]
-usrselectedheight = sys.argv[1]
+print "Running " + sys.argv[2]
+usrselectedheight = sys.argv[2]
 #linus's updates
 #usrselectedcoords = usrselectedcoords.replace(" ","")
 #usrselectedcoords = usrselectedcoords.upper()

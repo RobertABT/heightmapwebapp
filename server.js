@@ -10,7 +10,7 @@ parseString = require('xml2js').parseString,
 	 io = require('socket.io').listen(server),
       child;
 
-server.listen(80);
+server.listen(3000);
 
 app.configure(function () {
   app.use(express.static(__dirname + '/public'));
@@ -20,10 +20,7 @@ app.configure(function () {
 });
 
 app.post('/submit', function(req, res){
-
-});
-
-io.sockets.on('connection', function (socket) {
+}); io.sockets.on('connection', function (socket) {
   console.log(socket.id + " connected.");
 
 

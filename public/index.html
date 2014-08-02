@@ -4,35 +4,17 @@
         <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('/');
-
-      socket.on('invalid', function(data){
-	  alert("Invalid postcode!");
-      });
-
       socket.on('generated', function(data){
         window.location.href="/preview?id=GENERATED_" + data.fileName 
       });
-
-      function valid_postcode(postcode) {
-	postcode = postcode.replace(/\s/g, "");
-	var regex = /^[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2}$/i;
-	return regex.test(postcode);
-      }
-
       function submitPostCode() {
-	var input = document.getElementById('postcode').value;                     
-	if(valid_postcode(input)) {
-	  socket.emit('postCode', {'code':input});
-        } else {
-          alert('Invalid postcode');
-        }
-        //socket.emit('postCode', {'code':document.getElementById('postcode').value});
+        socket.emit('postCode', {'code':document.getElementById('postcode').value});
       }
     </script>
   </head>
   <body>
     <form id="form1" onSubmit="return false"> 
-      <p>!!!! NEED some explanation here !!!!!</p>
+      <p> OS2STL is a program which takes a location and then reads the OS map data of that area, converting it into a format that can be printed in a 3d printer. </p>
        <p>Enter the postcode:       <input type="text" id="postcode"/></p>
        <!--<p><em>or</em> Enter an OS grid reference <input type="text" name="OSgridref"/></p>
        <p>Provide a vertical scale value (5 is good): <input type="text" name="scale" value="5" size="5" /></p>-->
