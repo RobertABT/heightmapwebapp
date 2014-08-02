@@ -22,6 +22,11 @@
       function submitPostCode() {
 	var input = document.getElementById('postcode').value;
 	var scale = document.getElementById('scale').value;
+	console.log(scale);
+	if(scale == 0) {
+	  alert("You can't divide by zero! At least we hope you can't!");
+	  return;
+	}
 	if(valid_postcode(input)) {
 	  socket.emit('postCode', {'code':input, 'scale':scale});
 	  alert("It will take 20 seconds to generate");
