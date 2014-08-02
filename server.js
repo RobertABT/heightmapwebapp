@@ -28,6 +28,7 @@ app.post('/submit', function(req, res){
     var input = data.code;
     var api = "http://www.nearby.org.uk/api/convert.php?key=5103caf756c8b6&p=";
     var gridCode;
+    var scale = data.scale;
     var result;
 
     http.get(api + input, function(res){
@@ -44,7 +45,7 @@ app.post('/submit', function(req, res){
 	    gridCode = gridCode.replace(/ /g,'');
 	    fs.exists('public/generated/GENERATED_' + gridCode + '.stl', function(exists) {
 	      if (!exists) {
-		child = exec('cd python; python2 webstlwrite.py ' + gridCode, function(error, stdout, stderr) {
+		child = exec('cd python; python2 webstlwrite.py ' + gridCode + ' ' + scale, function(error, stdout, stderr) {
 		  socket.emit('generated',{'fileName' : gridCode});
 		  return;
 		});
