@@ -76,14 +76,17 @@ app.get('/preview', function(req, res) {
 app.get('/download', function(req, res) {
   // res.redirect('/get?id=GENERATED_' + gridCode); gridCode can't be accessed
   var file = 'public/generated/' + req.param('id') + '.stl';
+  fs.exists(file, function(exists) {
+    if(exists){
+      var filename = path.basename(file);
+      var mimetype = mime.lookup(file);
 
-  var filename = path.basename(file);
-  var mimetype = mime.lookup(file);
+      res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+      res.setHeader('Content-type', mimetype);
 
-  res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-  res.setHeader('Content-type', mimetype);
-
-  var filestream = fs.createReadStream(file);
-  filestream.pipe(res);
+      var filestream = fs.createReadStream(file);
+      filestream.pipe(res);
+    }
+  })
 });
 
