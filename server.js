@@ -46,11 +46,11 @@ app.post('/submit', function(req, res){
 	    fs.exists('public/generated/GENERATED_' + gridCode + '.stl', function(exists) {
 	      if (!exists) {
 		child = exec('cd python; python2 webstlwrite.py ' + gridCode + ' ' + scale, function(error, stdout, stderr) {
-		  socket.emit('generated',{'fileName' : gridCode});
+		  socket.emit('generated',{'fileName' : gridCode, 'scale': scale});
 		  return;
 		});
 	      } else {
-		socket.emit('generated',{'fileName' : gridCode});
+		socket.emit('generated',{'fileName' : gridCode, 'scale': scale});
 	      }
 	    });
 	  } else {
@@ -75,7 +75,6 @@ app.get('/preview', function(req, res) {
 });
 
 app.get('/download', function(req, res) {
-  // res.redirect('/get?id=GENERATED_' + gridCode); gridCode can't be accessed
   var file = 'public/generated/' + req.param('id') + '.stl';
   fs.exists(file, function(exists) {
     if(exists){
