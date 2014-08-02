@@ -1,0 +1,13 @@
+Notes to talk about:
+
+
+
+- Contributors
+
+- Method and languages
+
+- Time spent
+
+- Website and decisions
+
+- Demonstration and/or practical applications.
