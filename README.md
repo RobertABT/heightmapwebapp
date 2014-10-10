@@ -16,5 +16,6 @@ python dependencies/modules
 
 for installation info for these view github.com/robertabt/heightmap
 
+live version @ os2stl.co.uk
 
-web address = 198.98.199.217
+this version can run behind a proxy by running server-proxy.js and modifying line 36 and 37
