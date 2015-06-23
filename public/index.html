@@ -1,16 +1,33 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>OS2STL</title>
-    <script src="/socket.io/socket.io.js"></script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>HeightMap2STL</title>
+<!-- SET: FAVICON -->
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+<!-- END: FAVICON -->
+<!-- SET: STYLESHEET -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+<!-- END: STYLESHEET -->
+<!-- SET: SCRIPTS -->
+<script type="text/javascript"></script>
+<!-- END: SCRIPTS -->
+
+
+
+
+
+<!-- Start of os2stl framework -->
+        <script src="/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('/');
 
       socket.on('invalid', function(data){
-	alert("Invalid postcode!");
+	  alert("Invalid postcode!");
       });
 
       socket.on('generated', function(data){
-        window.location.href="/preview?id=GENERATED_" + data.fileName + '_scale_' + data.scale
+        window.location.href="/preview?id=GENERATED_" + data.fileName + "_scale_" + document.getElementById('scale').value
       });
 
       function valid_postcode(postcode) {
@@ -20,34 +37,140 @@
       }
 
       function submitPostCode() {
-	var input = document.getElementById('postcode').value;
-	var scale = document.getElementById('scale').value;
-	console.log(scale);
+        var scale = document.getElementById('scale').value;
 	if(scale == 0) {
-	  alert("You can't divide by zero! At least we hope you can't!");
+	  alert("You can't divide by Zero! At least we hope you can't!");
 	  return;
-	}
+	};
+	var input = document.getElementById('postcode').value;                     
 	if(valid_postcode(input)) {
 	  socket.emit('postCode', {'code':input, 'scale':scale});
-	  alert("It will take 20 seconds to generate");
-	} else {
-	  alert('Invalid postcode');
-	}
+	  alert("It may take a while to generate...");
+        } else {
+          alert('Invalid postcode');
+        }
+        //socket.emit('postCode', {'code':document.getElementById('postcode').value}, {'scale':document.getElementById('scale').value},);
       }
     </script>
-    <link href="index.css" rel="stylesheet" type="text/css" media="screen" />
-  </head>
-  <div id=container>
-  <body>
-    <form id="form1" onSubmit="return false">
-       <h1>Welcome to OS2STL!</h1>
-       <h5> OS2STL is a program which takes a location and then reads the OS map data of that area,</h5>
-       <h5>converting it into a format that can be printed in a 3d printer.  (".stl" format)</h5>
-       <p>Enter the postcode:       <input type="text" id="postcode"/>  <input type="submit" onClick="submitPostCode()" value="Submit"/></p>
-       <!--<p><em>or</em> Enter an OS grid reference <input type="text" name="OSgridref"/></p> -->
-       <p>Provide a vertical scale value (5 is good): <input type="text" id="scale" value="5" size="5" /></p>
-      <p></p>
-     </form>
-  </body>
+<!-- finish the os2stl file framework-->
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<!-- wrapper starts -->
+<div class="wrapper">
+  <!-- Header Starts -->
+  <div id="header">
+    <div class="header">
+      <div id="logo"> <a href="index.html"> OS2STL </a> </div>
+      <div id="nav">
+        <ul>
+          <li> <a href="#"> Home </a> </li>
+          <!--<li> <a href="#"> about </a> </li>
+          <li> <a href="#"> Services </a> </li>
+          <li> <a href="#"> Blog </a> </li>
+          <li> <a href="#"> contact </a> </li>-->
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
   </div>
+  <!-- Header ends -->
+  <!-- banner Starts -->
+  <div class="banner-outer">
+
+    <div align="center" class="banner"> <img src="images/snapshot.png" width="577" height="330" alt=" "> </div>
+  </div>
+  <!-- banner ends -->
+  <!-- maincontent Starts -->
+  <div class="maincontent">
+    <!-- container starts -->
+    <div class="container">
+      <div class="details">
+        <ul>
+          <li>
+            <h2>User Interface</h2>
+            <p>
+              <!-- start of framework form-->
+  <form id="form1" onSubmit="return false"> 
+            <p> OS2STL is a program which takes a location and then reads the OS map data of that area, converting it into a format that can be printed in a 3d printer. </p>
+       <p>Enter the postcode:       <input type="text" id="postcode"/></p>
+       <p>Provide a vertical scale value (1-2 is good): <input type="text" id="scale" value="2" size="5" /></p>
+       <p><input type="submit" onClick="submitPostCode()" value="Submit"/></p>
+     </form><p>
+	    <p><a href="https://github.com/RobertABT/heightmapwebapp">Fork us on GitHub</a></p>
+        
+  <!-- end of framework form -->
+            </p>
+            <!--<a href="#"> read more </a> --></li>
+          <li class="last">
+            <h2> Links</h2>
+            <p>
+            Website www.os2stl.co.uk<br>
+            Git Hub Link: https://github.com/RobertABT/heightmapwebapp<br>
+	    Email me at: Admin@os2stl.co.uk<br>
+	    This service uses Ordance Survey's Terrain50 data </p>
+            <!--<a href="#"> read more </a>--> </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="blog">
+        <h3></h3>
+        <p>
+        
+        </p>
+        <p>
+        
+        
+        </p>
+      </div>
+    </div>
+    <!-- container ends -->
+  </div>
+  <!-- maincontent ends -->
+  <!-- footer starts -->
+  <div id="footer">
+    <div class="footer">
+      <div class="foot-inner">
+        <div class="social flt_Lt">
+          <ul>
+            <li>
+              <p>We reached Semi Finals in Young Rewired State Festival of Code 2014. Awarded for.....</p>
+            </li>
+            <!--<li> <a class="ico1" href="#"> RSS </a> </li>
+            <li> <a class="ico2" href="#"> Twitter </a> </li>
+            <li> <a class="ico3" href="#"> Facebook </a> </li>-->
+          </ul>
+        </div>
+        <div class="foot-nav flt_Rt">
+          <ul>
+           <!-- <li> <a href="#"> Home </a> </li>
+            <li> <a href="#"> about </a> </li>
+            <li> <a href="#"> Services </a> </li>
+            <li> <a href="#"> Blog </a> </li>
+            <li class="no_bg"> <a href="#"> contact </a> </li>-->
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="copy">
+      <p> Copyright © 2014 www.os2stl.co.uk | All rights reserved. Design by <a href="http://webdesign.dalekdoris.co.uk" target="_new" rel="nofollow">Tomos Fearn</a> </p>
+    </div>
+  </div>
+  <!-- footer ends -->
+</div>
+<!-- wrapper ends -->
+</body>
 </html>
