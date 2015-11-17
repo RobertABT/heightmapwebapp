@@ -20,7 +20,7 @@ python dependencies/modules
 
 also needed
 
-* sudo apt-get python-pip
+* sudo apt-get install python-pip
 * sudo pip install stl_tools (this can take a long time)
 
 for installation info for these view github.com/robertabt/heightmap
