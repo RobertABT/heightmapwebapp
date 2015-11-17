@@ -6,7 +6,12 @@ This is a web interface for the height map Python script.
 
 
 run npm install in the directory to install the node modules
-
+(for installing nodejs run the following)
+"
+sudo apt-get install curl
+curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
+sudo apt-get install nodejs
+"
 
 python dependencies/modules
 
