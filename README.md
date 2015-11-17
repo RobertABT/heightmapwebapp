@@ -17,7 +17,9 @@ python dependencies/modules
 * python-numpy
 * python-matplotlib
 * python-scipy
+
 also needed
+
 * sudo apt-get python-pip
 * sudo pip install stl_tools (this can take a long time)
 
