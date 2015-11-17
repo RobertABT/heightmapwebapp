@@ -22,6 +22,7 @@ also needed
 
 * sudo apt-get install python-pip
 * sudo pip install stl_tools (this can take a long time)
+* you need to run npm install as well
 
 for installation info for these view github.com/robertabt/heightmap
 
