@@ -16,17 +16,15 @@ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install nodejs
 "
 
+
 python dependencies/modules
 
-* python-numpy
-* python-matplotlib
-* python-scipy
+* apt install python3-pip
+* pip3 install stl_tools (this can take a long time)
+* pip3 install numpy
+* pip3 install matplotlib
+* pip3 install scipy
 
-also needed
-
-* sudo apt-get install python-pip
-* sudo pip install stl_tools (this can take a long time)
-* you need to run npm install as well
 
 for installation info for these view github.com/robertabt/heightmap
 
