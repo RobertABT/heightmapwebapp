@@ -10,9 +10,12 @@ run npm install in the directory to install the node modules
 
 "
 sudo apt-get install curl
+
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+
 sudo apt-get install nodejs
 "
+
 python dependencies/modules
 
 * python-numpy
